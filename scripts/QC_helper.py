@@ -45,7 +45,8 @@ def prepare_data_set_for_qc(num_circuits, class_A_dataset, class_B_dataset,
     data_for_qc = np.concatenate((slice_A, slice_B, slice_C), axis = 0)
     return data_for_qc
 
-def draw_circuits(qsvm, dataset, print_circuit_info = True, add_measurement = False):
+def draw_circuits(qsvm, dataset, print_circuit_info = True, add_measurement = False,
+                  jupyter_notebook = False):
     circuit_count = 0
     for i in range(0,len(dataset)):
         for j in range (0,len(dataset)):
@@ -57,8 +58,11 @@ def draw_circuits(qsvm, dataset, print_circuit_info = True, add_measurement = Fa
                       quantum_circuit.depth(), '\tcircuit width = ',
                       quantum_circuit.width())
                 print('Circuit operation breakdown:\n\t',
-                      quantum_circuit.count_ops())
-            print(quantum_circuit.draw())
+                      quantum_circuit.count_ops())            
+            if (jupyter_notebook):
+                print(quantum_circuit.draw(output = 'mpl'))
+            else:
+                print(quantum_circuit.draw())
             print('\n\n')
             circuit_count += 1
             
