@@ -16,7 +16,8 @@
 #   4. This method is known as kernalization (it optimizes the cost)
 # =============================================================================
 import math
-from datasets import *
+#from datasets import * # dont need this here
+import numpy as np
 
 # import the neccessary modules for quantum support vector machine
 from qiskit import BasicAer
